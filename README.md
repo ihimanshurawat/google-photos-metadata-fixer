@@ -237,6 +237,28 @@ The repository includes a ready-to-use GitHub Actions workflow (`.github/workflo
 
 ---
 
+## 🍏 macOS Installation Note (Gatekeeper)
+
+Because this is a free, open-source application built directly from source and GitHub Actions without an Apple Developer ID subscription ($99/year), macOS **Gatekeeper** will show an *"Apple could not verify..."* or *"Unidentified Developer"* alert on the first launch.
+
+### How to open on macOS (One-time step):
+
+#### Option 1: Via System Settings (Recommended)
+1. Drag **`Google Photos Metadata Fixer.app`** to your **`/Applications`** folder.
+2. Open the app. When the warning appears, click **Done** (or **Cancel**).
+3. Open **System Settings** ➔ **Privacy & Security**.
+4. Scroll down to the **Security** section where you will see:
+   > *"“Google Photos Metadata Fixer” was blocked from use because it is not from an identified developer."*
+5. Click **Open Anyway** and confirm with your password / Touch ID.
+
+#### Option 2: Via Terminal One-Liner
+If you prefer terminal, you can remove Apple's download quarantine flag:
+```bash
+xattr -cr "/Applications/Google Photos Metadata Fixer.app"
+```
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions from the community! Here is how you can help:
