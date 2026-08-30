@@ -1,0 +1,45 @@
+[package]
+name = "google-photos-metadata-fixer"
+version = "1.0.0"
+description = "Cross-platform desktop application to stitch Google Photos Takeout metadata back into images and videos"
+authors = ["TakeoutStitcher Contributors"]
+edition = "2021"
+
+[lib]
+name = "google_photos_metadata_fixer_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0", features = ["image-png", "image-ico"] }
+tauri-plugin-shell = "2.0.0"
+tauri-plugin-dialog = "2.0.0"
+tauri-plugin-fs = "2.0.0"
+rfd = "0.14"
+zip = { version = "2.2", default-features = false, features = ["deflate", "time"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rayon = "1.10"
+walkdir = "2.5"
+filetime = "0.2"
+chrono = { version = "0.4", features = ["serde"] }
+regex = "1.10"
+crossbeam-channel = "0.5"
+little_exif = "0.6"
+kamadak-exif = "0.5"
+log = "0.4"
+env_logger = "0.11"
+thiserror = "1.0"
+tempfile = "3.10"
+glob = "0.3"
+objc = "0.2"
+dirs = "5.0"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "z"
+strip = true

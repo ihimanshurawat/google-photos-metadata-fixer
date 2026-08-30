@@ -1,0 +1,44 @@
+# Dockerfile for building and testing Linux x86_64 / aarch64 builds locally
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system build dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    libwebkit2gtk-4.1-dev \
+    libayatana-appindicator3-dev \
+    librsvg2-dev \
+    patchelf \
+    libssl-dev \
+    libgtk-3-dev \
+    libjavascriptcoregtk-4.1-dev \
+    libsoup-3.0-dev \
+    pkg-config \
+    ca-certificates \
+    git \
+    file \
+    exiftool \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+# Install Rust stable
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Run test suite and production build
+RUN npm run build
+RUN cd src-tauri && cargo test
+RUN npm run tauri build
+
+CMD ["echo", "Linux build successful! Artifacts generated in src-tauri/target/release/bundle/"]

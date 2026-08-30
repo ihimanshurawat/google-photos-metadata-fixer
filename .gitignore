@@ -1,0 +1,52 @@
+# Node.js & Frontend dependencies
+node_modules/
+dist/
+dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Rust & Tauri build outputs
+/src-tauri/target/
+/target/
+src-tauri/gen/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows system files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux system files
+*~
+.directory
+
+# Environment & local secrets
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor configurations
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary staging and test logs
+*.log
+.takeout_staging*
+takeout_staging*
