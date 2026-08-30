@@ -237,24 +237,60 @@ The repository includes a ready-to-use GitHub Actions workflow (`.github/workflo
 
 ---
 
-## 🍏 macOS Installation Note (Gatekeeper)
+---
 
-Because this is a free, open-source application built directly from source and GitHub Actions without an Apple Developer ID subscription ($99/year), macOS **Gatekeeper** will show an *"Apple could not verify..."* or *"Unidentified Developer"* alert on the first launch.
+## 💻 Platform Installation & Security Notes
 
-### How to open on macOS (One-time step):
+Because this is a free, open-source application built directly from source via GitHub Actions without proprietary enterprise code-signing certificates, operating systems may prompt you with standard first-time security warnings:
 
-#### Option 1: Via System Settings (Recommended)
-1. Drag **`Google Photos Metadata Fixer.app`** to your **`/Applications`** folder.
-2. Open the app. When the warning appears, click **Done** (or **Cancel**).
-3. Open **System Settings** ➔ **Privacy & Security**.
-4. Scroll down to the **Security** section where you will see:
-   > *"“Google Photos Metadata Fixer” was blocked from use because it is not from an identified developer."*
-5. Click **Open Anyway** and confirm with your password / Touch ID.
+### 🍏 macOS (Gatekeeper)
+On macOS, **Gatekeeper** will show an *"Apple could not verify..."* or *"Unidentified Developer"* alert on the first launch.
 
-#### Option 2: Via Terminal One-Liner
-If you prefer terminal, you can remove Apple's download quarantine flag:
+**How to open (One-time step):**
+- **Option A (System Settings — Recommended)**:
+  1. Drag **`Google Photos Metadata Fixer.app`** to your **`/Applications`** folder.
+  2. Open the app. When the warning appears, click **Done** (or **Cancel**).
+  3. Open **System Settings** ➔ **Privacy & Security**.
+  4. Scroll down to the **Security** section where you will see:
+     > *"“Google Photos Metadata Fixer” was blocked from use because it is not from an identified developer."*
+  5. Click **Open Anyway** and confirm with your password or Touch ID.
+- **Option B (Terminal One-Liner)**:
+  Remove Apple's download quarantine flag:
+  ```bash
+  xattr -cr "/Applications/Google Photos Metadata Fixer.app"
+  ```
+
+---
+
+### 🪟 Windows (Microsoft Defender SmartScreen)
+On Windows, **Microsoft Defender SmartScreen** may display a blue dialog stating *"Windows protected your PC — Microsoft Defender SmartScreen prevented an unrecognized app from starting."*
+
+**How to open (One-time step):**
+1. On the SmartScreen dialog, click **"More info"** (underneath the message text).
+2. Click the **"Run anyway"** button that appears at the bottom.
+3. The app / installer will launch immediately.
+
+---
+
+### 🐧 Linux (AppImage & Debian / Ubuntu)
+
+#### Running the `.AppImage` (Universal Linux):
+1. Download the `.AppImage` file from the [Releases](https://github.com/ihimanshurawat/google-photos-metadata-fixer/releases) page.
+2. Grant executable permission:
+   ```bash
+   chmod +x google-photos-metadata-fixer_*.AppImage
+   ./google-photos-metadata-fixer_*.AppImage
+   ```
+   *(Or **Right-Click** ➔ **Properties** ➔ **Permissions** ➔ Check **"Allow executing file as program"**)*.
+3. *(Ubuntu 22.04+ only)* If the AppImage prompts that `libfuse.so.2` is missing, install the FUSE2 compatibility library:
+   ```bash
+   sudo apt install libfuse2
+   ```
+
+#### Installing the `.deb` Package (Debian / Ubuntu / Mint):
 ```bash
-xattr -cr "/Applications/Google Photos Metadata Fixer.app"
+sudo dpkg -i google-photos-metadata-fixer_*_amd64.deb
+sudo apt-get install -f   # Fix any missing dependencies if prompted
 ```
 
 ---
