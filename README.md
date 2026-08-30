@@ -11,6 +11,13 @@ A high-performance, cross-platform desktop application designed to stitch Google
 
 **100% offline, privacy-first, and runs locally on your machine with zero cloud uploads.**
 
+<div align="center">
+  <br />
+  <img src="docs/screenshots/app_main.png" alt="Google Photos Metadata Fixer macOS Desktop App" width="820" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);" />
+  <br />
+  <br />
+</div>
+
 ---
 
 ## 🎯 The Problem
